@@ -43,6 +43,11 @@
     Для первого и последнего элемента li для всех ul на данной странице
     добавьте сплошную красную рамку толщиной в 1px
     */
+    let uls = document.querySelectorAll("ul")
+    for (let ul of uls){
+        ul.children[0].style.border = "1px solid red";
+        ul.children[ul.children.length-1].style.border = "1px solid red";
+    }
 </script>
 
 </html>
