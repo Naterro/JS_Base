@@ -64,6 +64,17 @@
         Если во второй ячейке значение больше 100, строка должна отображаться зеленым цветом, если значение менее 100 - красным цветом.
         Для смены цвета строки используйте код row.style.backgroundColor = "цвет"
         */
+        let table = document.querySelectorAll("#statsTable td:nth-child(2)");
+        console.log(table)
+        for(let val of table){
+            console.log(val)
+            if (val.textContent>100){
+                val.style.backgroundColor = "green"
+            }
+            else {
+                val.style.backgroundColor = "red"
+            }
+        }
     </script>
 </body>
 

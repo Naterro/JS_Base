@@ -75,6 +75,32 @@
         В div с id result выведите сообщение "Отдел 1 сделал больше продаж" или "Отдел 2 сделал больше продаж" на основе раннее вычисленных значений в строке "Итого".
         Используйте любые методы, которые были рассмотрены на в прошлых уроках.
         */
+        let table = document.querySelector("#statsTable").children[0];
+        let max_1 = 0;
+        let max_2 = 0;
+        console.log(table.children)
+        for (let i=1;i< table.children.length;i++) {
+
+                if (!isNaN(table.children[i].textContent)) ;
+                {
+
+                    max_1 += Number(table.children[i].children[1].textContent);
+                    max_2 += Number(table.children[i].children[2].textContent);
+                }
+        }
+        if(max_1>max_2){
+            document.querySelector("#result").textContent="Отдел 1 сделал больше продаж";
+        }
+        else {
+            document.querySelector("#result").textContent="Отдел 2 сделал больше продаж";
+        }
+
+        table.outerHTML+=` <tr>
+       <td>Итого</td>
+         <td>${max_1}</td>
+                   <td>${max_2}</td>
+           </tr>`
+
     </script>
 </body>
 </html>
