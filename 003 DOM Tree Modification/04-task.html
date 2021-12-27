@@ -61,6 +61,26 @@
             }
         ];
 
+        function createRow(colum1Text, colum2Text) {
+            let tr = document.createElement("tr");
+            tr.append(createCell(colum1Text));
+            tr.append(createCell(colum2Text));
+            return tr;
+        }
+
+        function createCell(text) {
+            let td = document.createElement("td");
+            td.textContent = text;
+            return td;
+        }
+
+        let table = document.createElement("table");
+
+        for (const item of source) {
+            table.append(createRow(item.month,item.amount));
+        }
+
+        document.body.append(table);
     </script>
 </body>
 
