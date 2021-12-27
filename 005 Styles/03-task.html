@@ -35,6 +35,16 @@
 
         let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let busyDays = ["Monday", "Thursday", "Friday"];
+        for (let day of days){
+            let div = document.createElement("div")
+            div.textContent = day;
+            for (let b_day of busyDays){
+                if (day ==b_day){
+                    div.className="busy-day";
+                }
+            }
+            document.body.append(div);
+        }
 
     </script>
 </body>
