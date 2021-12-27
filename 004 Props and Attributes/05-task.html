@@ -28,6 +28,14 @@
             lastName: "Doe",
             age: "25",
         }
+        let all_el = document.body.querySelectorAll("div");
+        for (let div of all_el) {
+            for (let data in user) {
+                if (div.getAttribute("data-bind") == data) {
+                    div.textContent=user[data];
+                }
+            }
+        }
 
     </script>
 </body>
