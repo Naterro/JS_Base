@@ -11,7 +11,7 @@
 <body>
     <button id="testBtn" >Test Button</button>
     <button onclick="alert(h)" >Test Button2</button>
-    <button  >Test Button3</button>
+    <button id="testBtn3" >Test Button3</button>
     <script>
         /*
         Задание:
@@ -24,6 +24,8 @@
         btn.addEventListener("click",()=> {
             alert(h)
         });
+        let btn3=document.querySelector("#testBtn3")
+        btn3.onclick=alert(h);
 
     </script>
 </body>
