@@ -98,9 +98,12 @@
             let p = document.createElement("p");
             p.innerText = text;
 
+            let del_btn = document.createElement("button");
+            del_btn.textContent="del";
+            del_btn.addEventListener("click", deleteTask);
             div.append(input);
             div.append(p);
-
+            div.append(del_btn);
             return div;
         }
 
@@ -111,7 +114,10 @@
                 this.parentElement.classList.remove("completed");
             }
         }
+        function deleteTask() {
+            this.parentElement.remove();
 
+        }
         function addTaskHandler() {
             if (taskNameInput.value) {
                 if (!startMessage.hidden) startMessage.hidden = true;
@@ -119,10 +125,11 @@
                 let newTask = createTask(taskNameInput.value);
                 taskList.append(newTask);
                 taskNameInput.value = "";
-            } else { 
+            } else {
                 alert("введите имя задачи");
             }
         }
+
     </script>
 </body>
 
