@@ -17,6 +17,27 @@
         Разместите на странице два поля ввода - первое для радиуса цилиндра, второе для высоты цилиндра.
         Объем цилиндра выведите в тело страницы.
         */
+        let input_1 = document.createElement("input");
+        let input_2 = document.createElement("input");
+        let output_p = document.createElement("p");
+        let btn= document.createElement("button");
+        btn.textContent="solve";
+        input_1.value="radius";
+        input_2.value="height";
+        const p=3.14;
+        document.body.append(input_1);
+        document.body.append(input_2);
+        document.body.append(btn);
+        document.body.append(output_p);
+
+        btn.addEventListener("click",()=>{
+            if (!isNaN(+input_1.value) && !isNaN(+input_2.value) )
+            output_p.textContent=p* Math.pow(+input_1.value,2)*+input_2.value;
+            else {
+                alert("ТОлько цифры")
+            }
+        })
+
 
     </script>
 </body>

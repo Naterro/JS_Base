@@ -40,14 +40,44 @@
         input2 сделайте, в случае ошибки, #input2Error видимым.
         */
         let input1 = document.querySelector("#input1");
-        let input3 = document.querySelector("#input2");
-
+        let input2 = document.querySelector("#input2");
+        let reset = document.querySelector("#reset-btn");
         let addBtn = document.querySelector("#add-btn");
         let remBtn = document.querySelector("#rem-btn");
         let mulBtn = document.querySelector("#mul-btn");
         let divBtn = document.querySelector("#div-btn");
 
+        function btns_disabled(){
+            let btns = document.querySelectorAll("button")
+            for (let btn of btns){
+                if (btn.textContent=="reset"){
+
+                }
+                else {
+                    btn.disabled = true;
+                }
+            }
+        }
+        function val(e){
+        //    console.log(e.data);
+            if(!e.data){
+                let errorSpanId = this.id + "Error"; //input1Error или input2Error
+                document.querySelector("#" + errorSpanId).style.display = "block";
+                btns_disabled();
+            }
+            if(isNaN(e.data) ){
+                this.className="error";
+                btns_disabled();
+            }
+
+
+
+
+        }
+        input1.addEventListener("input",val);
+        input2.addEventListener("input",val);
         addBtn.addEventListener("click", function () {
+
             alert(Number(input1.value) + Number(input2.value));
         });
 
@@ -61,6 +91,20 @@
 
         divBtn.addEventListener("click", function () {
             alert(input1.value / input2.value);
+        });
+        reset.addEventListener("click", () => {
+            input1.value = "";
+            input2.value = "";
+            input1.className="";
+            input2.className="";
+            let spans = document.querySelectorAll("span");
+            spans.forEach((s)=>{
+                s.style.display="none";
+            })
+            let btns = document.querySelectorAll("button")
+            btns.forEach((btn)=>{
+                btn.disabled=false;
+            })
         });
     </script>
 </body>
