@@ -152,8 +152,23 @@
                 email: 'newman.wynn@visalia.name'
             }
         ];
-
         let uslerList = document.querySelector("#userList");
+        function mouseEnterHandler(e){
+            let output = document.querySelector('#output');
+            output.textContent = "";
+            let index = this.dataset.userNumber;
+            let user = users[index];
+            for (let data in user){
+                let p = document.createElement("p")
+                p.textContent=`${data} - ${user[data]}`;
+                output.append(p)
+
+            }
+
+
+            /*console.log(user);*/
+        }
+
 
         for (let index = 0; index < users.length; index++) {
             const currentUser = users[index];

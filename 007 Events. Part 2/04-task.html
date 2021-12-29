@@ -27,8 +27,16 @@
         */
         let div = document.querySelector("#element");
         let distance = 10;
-
         document.addEventListener("keydown", function (e) {
+            if (e.shiftKey){
+                distance = 20;
+            }
+            else {
+                distance = 10;
+            }
+        });
+        document.addEventListener("keydown", function (e) {
+            console.log(distance);
             switch (e.code) {
                 case "ArrowLeft":
                     moveLeft(div, distance);
@@ -44,6 +52,9 @@
                     break;
             }
         });
+
+
+
 
         function moveUp(element, distance) {
             let top = getComputedStyle(element).top;
