@@ -15,6 +15,14 @@
         Задание:
         Добавьте для кнопки два обработчика, один должен сработать в фазе capturing, второй - в фазе bubbling
         */
+        let btn = document.querySelector("button");
+        function hello(phase){
+            alert("hello -" + phase);
+        }
+        btn.addEventListener("click",()=>{alert("true")},true);
+
+        btn.addEventListener("click",()=>{alert("no")},);
+
     </script>
 </body>
 
