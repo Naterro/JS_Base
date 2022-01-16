@@ -17,7 +17,12 @@
     <p>Пользователи системы:</p>
     <ul id="usersList">
     </ul>
-    
+    <template>
+        <li>
+            {{content}}
+        </li>
+    </template>
+    <script src="mustache.min.js"></script>
     <script>
         /*
         Задание:
@@ -143,9 +148,11 @@
             const currentUser = users[i];
             let fullName = `${currentUser.name.first} ${currentUser.name.first}`;
             let liContent = `${fullName} (${currentUser.email})`;
-            let li = document.createElement("li");
-            li.textContent = liContent;
-            list.append(li);
+            let template = document.querySelector("template").innerHTML;
+            let render = Mustache.render(template,{content : liContent});
+            /*let li = document.createElement("li");
+            li.textContent = liContent;*/
+            list.innerHTML+=(render);
         }
     </script>
 </body>

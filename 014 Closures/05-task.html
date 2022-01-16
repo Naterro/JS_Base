@@ -20,7 +20,7 @@
         когда процесс разработки и целевая среда выполнения не дает возможность использовать 
         ключевое солово class
         */
-
+/*
         class Numbers {
             #values;
             #threshold;
@@ -38,6 +38,24 @@
             // возвращает все значения из массива values, которые меньше, чем значение переменной threshold 
             getLessThanThreshold() {
                 return this.#values.filter(v => v < this.#threshold);
+            }
+        }*/
+        function createNumbers(threshold, values) {
+
+            // эти переменные добавлены для наглядности их можно удалить и напрямую работать с threshold и values
+            // так как аргументы функции createNumbers находятся в лексическом окружении
+            // они также будут сохранены в замыкании
+            let privateThreshold = threshold;
+            let privateValues = values;
+
+            return {
+                getGreaterThanThreshold() {
+                    return privateValues.filter(v => v > privateThreshold);
+                },
+
+                getLessThanThreshold() {
+                    return privateValues.filter(v => v < privateThreshold);
+                }
             }
         }
 

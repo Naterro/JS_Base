@@ -16,6 +16,8 @@
         */
 
         function sum(a, b) {
+            if(!a) throw new Error("Значение для параметра а обязательое");
+            if(!b) throw new Error("Значение для параметра b обязательое");
             return a + b;
         }
 
@@ -28,6 +30,7 @@
         } catch (error) {
             console.log(error.message);
         }
+        
     </script>
 </body>
 

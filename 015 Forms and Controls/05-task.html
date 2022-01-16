@@ -84,6 +84,8 @@
             <input type="number" name="age" id="age">
         </div>
         <input type="button" value="Save" id="saveButton">
+        <input type="button" value="Clear" id="clearButton">
+        <input type="button" value="Delete" id="deleteButton">
     </form>
     <script>
         /*
@@ -215,9 +217,24 @@
                     this.listElement.append(li);
                 }
             }
+            refresh(data, listElement, displayFn) {
+                this.data = data;
+                this.listElement.innerHTML = "";
+
+                for (let index = 0; index < data.length; index++) {
+                    const currentData = data[index];
+
+                    let li = document.createElement("li");
+                    li.textContent = displayFn(currentData);
+                    li.dataset.index = index;
+
+                    this.listElement.append(li);
+                }
+            }
 
             select(id) {
                 this.selectedData = this.data[id];
+                this.selectedData.id = id;
                 this.deselectAll();
                 this.listElement.children[id].classList.add("selected");
             }
@@ -249,6 +266,14 @@
                 this.form.email.value = user.email;
                 this.form.age.value = user.age;
             }
+            clearForm(){
+                this.form.firstName.value = "";
+                this.form.lastName.value ="";
+                this.form.companyName.value = "";
+                this.form.balance.value = "";
+                this.form.email.value = "";
+                this.form.age.value = "";
+            }
 
             saveForm() {
                 this.currentUser.name.first = this.form.firstName.value;
@@ -262,6 +287,9 @@
 
         let userList = document.querySelector("#userList");
         let saveButton = document.querySelector("#saveButton");
+        let clearButton = document.querySelector("#clearButton");
+        let deleteButton = document.querySelector("#deleteButton");
+
 
         let listService = new ListService(users, userList, x => x.name.first + " " + x.name.last);
         let formService = new UserFormService(document.forms[0]);
@@ -276,6 +304,16 @@
 
         saveButton.addEventListener("click", function () {
             formService.saveForm();
+        });
+        clearButton.addEventListener("click", function (){
+
+            listService.deselectAll();
+        });
+        deleteButton.addEventListener("click",function (e){
+            formService.clearForm();
+            users.splice(listService.selectedData.id,1);
+            listService.selectedData=null;
+            listService.refresh(users, userList, x => x.name.first + " " + x.name.last);
         });
     </script>
 </body>

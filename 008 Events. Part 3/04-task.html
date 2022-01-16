@@ -11,12 +11,12 @@
 <body>
     Операнд 1: <input id="input1" type="text"> <br />
     Операнд 2: <input id="input2" type="text"> <br />
-
+<div id="buttons">
     <button id="add-btn">+</button>
     <button id="rem-btn">-</button>
     <button id="mul-btn">*</button>
     <button id="div-btn">/</button>
-
+</div>
     <script>
         /*
         Задание:
@@ -24,28 +24,28 @@
         Результат работы сценария не должен измениться.
         */
         let input1 = document.querySelector("#input1");
-        let input3 = document.querySelector("#input2");
+        let input2 = document.querySelector("#input2");
+        let btns = document.querySelector("#buttons");
 
-        let addBtn = document.querySelector("#add-btn");
-        let remBtn = document.querySelector("#rem-btn");
-        let mulBtn = document.querySelector("#mul-btn");
-        let divBtn = document.querySelector("#div-btn");
 
-        addBtn.addEventListener("click", function () {
-            alert(Number(input1.value) + Number(input2.value));
-        });
 
-        remBtn.addEventListener("click", function () {
-            alert(input1.value - input2.value);
-        });
+        btns.addEventListener("click", (e => {
+            switch (e.target.textContent){
+                case "+":
+                    alert(Number(input1.value) + Number(input2.value));
+                    break;
+                case "-":
+                    alert(input1.value - input2.value);
+                    break;
+                case "*":
+                    alert(input1.value * input2.value);
+                    break;
+                case "/":
+                    alert(input1.value / input2.value);
+                    break;
+            }
+        }))
 
-        mulBtn.addEventListener("click", function () {
-            alert(input1.value * input2.value);
-        });
-
-        divBtn.addEventListener("click", function () {
-            alert(input1.value / input2.value);
-        });
     </script>
 </body>
 

@@ -90,6 +90,17 @@
                 this.url = url;
             }
         }
+        class ProductWithDiscount extends Product {
+            discount;
+            oldPrice;
+
+            constructor(imagePath, price, discount) {
+                super(imagePath, price, "#product-on-sale");
+                this.discount = discount;
+                this.oldPrice = this.price;
+                this.price = this.price - (this.price / 100 * this.discount);
+            }
+        }
 
         class Catalog {
             items = [];
@@ -100,6 +111,11 @@
             }
 
             add(item) {
+
+                if (item instanceof CatalogItem != true) {
+                    alert("Данный метод принимает только классы производные от CatalogItem");
+                    return;
+                }
                 this.items.push(item);
             }
 
@@ -118,6 +134,7 @@
         catalog.add(new Product("images/img3.jpg", 14.55));
         catalog.add(new Product("images/img4.jpg", 65.55));
         catalog.add(new Advertisement("images/banner2.jpg", "https://itvdn.comru/ru/specialities"));
+        catalog.add(new ProductWithDiscount("images/img4.jpg", 65.55, 20)); // продукт со скидкой
 
         catalog.show();
 

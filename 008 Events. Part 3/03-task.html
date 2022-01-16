@@ -9,9 +9,11 @@
 </head>
 
 <body>
+<div id="btns">
     <button>Кнопка 1</button>
     <button>Кнопка 2</button>
     <button>Кнопка 3</button>
+</div>
 
     <script>
         /*
@@ -19,13 +21,13 @@
         Перепишите сценарий таким образом, чтобы в коде устанавливался один обработчик для всех трех кнопок, при этом 
         результат работы сценария не должен измениться.
         */
-        let buttons = document.querySelectorAll("button");
-        buttons.forEach(btn => {
-            btn.addEventListener("click", clickHandler);
-        });
+        let div = document.querySelector("#btns");
+        div.addEventListener("click", clickHandler);
 
-        function clickHandler() {
-            alert(this.innerText);
+
+        function clickHandler(e) {
+            console.log(e)
+            alert(e.target.innerText);
         }
     </script>
 </body>

@@ -21,11 +21,26 @@
             Добавьте возможность сохранить выбранный цвет страницы в cookies сроком на 1 неделю.
             Добавьте восстановление выбранного цвета из cookies, если они есть, после загрузки документа.
         */
+        let cookie = document.cookie;
+        let arr = cookie.split(';')
+        for(let i=0;i<arr.length;i++){
+            arr[i]= arr[i].split('=')
+        }
+        for (let el of arr){
+            console.log(el)
+            if (el[0]==" backgroundColor"){
+                document.body.style.backgroundColor =el[1];
+                console.log(arr)
+            }
+        }
+
        
         document.querySelector("#saveButton").addEventListener("click", function () {
             const form = document.forms[0];
             let selectedColor = form.color.value;
             document.body.style.backgroundColor = selectedColor;
+            document.cookie = `backgroundColor=${selectedColor};`
+            console.log(document.cookie)
         });
     </script>
 </body>

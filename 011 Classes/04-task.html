@@ -68,6 +68,9 @@
     <div class="input-panel">
         <input type="text" id="task-name-input">
         <button id="add-task-btn">Добавить задачу</button>
+        <button id="done">Незавершенные задачи</button>
+        <button id="all">Все задачи</button>
+
     </div>
     <div class="task-list">
         <p id="start-message">Нет новых задач</p>
@@ -91,12 +94,32 @@
         let taskList = document.querySelector(".task-list");
         let tasks = [];
 
-        addTaskButton.addEventListener("click", addTaskHandler);
+        let doneBtn = document.querySelector("#done");
+        let allBtn = document.querySelector("#all");
 
+        addTaskButton.addEventListener("click", addTaskHandler);
+        doneBtn.addEventListener("click", doneTasks);
+        allBtn.addEventListener("click", allTasks);
         taskNameInput.addEventListener("keydown", function (e) {
             if (e.code == "Enter") addTaskHandler();
         })
+        function doneTasks(){
+            taskList.innerHTML=""
+            for (let task of tasks){
+                if(!task.isDone){
+                    task.createIn(taskList);
+                }
 
+            }
+
+
+        }
+        function allTasks(){
+            taskList.innerHTML=""
+            for (let task of tasks){
+                    task.createIn(taskList);
+            }
+        }
         function addTaskHandler() {
             if (taskNameInput.value) {
                 if (!startMessage.hidden) startMessage.hidden = true;

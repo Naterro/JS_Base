@@ -76,10 +76,12 @@
 
     <template id="template">
         <div class="task">
-            <input type="checbox">
-            <p></p>
+            <input type="checkbox">
+            <p>{{text}}</p>
         </div>
     </template>
+
+    <script src="mustache.min.js"></script>
 
     <script>
         /*
@@ -96,7 +98,9 @@
         taskList.addEventListener("click", changeTaskState);
 
         function createTask(text) {
-            let div = document.createElement("div");
+            let template = document.querySelector("#template").innerHTML;
+            let render = Mustache.render(template,{text : text});
+           /* let div = document.createElement("div");
             div.classList.add("task");
 
             let input = document.createElement("input");
@@ -107,8 +111,8 @@
 
             div.append(input);
             div.append(p);
-
-            return div;
+*/
+            return render;
         }
 
         function changeTaskState(e) {
@@ -129,7 +133,7 @@
                 if (!startMessage.hidden) startMessage.hidden = true;
 
                 let newTask = createTask(taskNameInput.value);
-                taskList.append(newTask);
+                taskList.innerHTML+=(newTask);
                 taskNameInput.value = "";
             } else {
                 alert("введите имя задачи");

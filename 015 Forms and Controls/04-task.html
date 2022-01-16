@@ -215,7 +215,20 @@
                     this.listElement.append(li);
                 }
             }
+            refresh(data, listElement, displayFn) {
+                this.data = data;
+                this.listElement.innerHTML = "";
 
+                for (let index = 0; index < data.length; index++) {
+                    const currentData = data[index];
+
+                    let li = document.createElement("li");
+                    li.textContent = displayFn(currentData);
+                    li.dataset.index = index;
+
+                    this.listElement.append(li);
+                }
+            }
             select(id) {
                 this.selectedData = this.data[id];
                 this.deselectAll();
@@ -275,7 +288,11 @@
         });
 
         saveButton.addEventListener("click", function () {
-            formService.saveForm();
+            if(confirm("Save?")){
+                formService.saveForm();
+                listService.refresh(users, userList, x => x.name.first + " " + x.name.last);
+            }
+
         });
 
     </script>

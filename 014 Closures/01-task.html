@@ -9,18 +9,20 @@
 </head>
 
 <body>
+<p>asdsa</p>
     <script>
         /*
         Задание:
         Перепишите следующий код так, чтобы он работал в любой среде выполнения (браузер, node.js и т.д.)
         */
-        if (!window.calc) {
-            window.calc = function (x, y) {
-                alert(x + y);
+        if (!globalThis.calc) {
+            globalThis.calc = function (x, y) {
+                globalThis.alert(x + y);
             }
         }
 
         calc(10, 20);
+
     </script>
 </body>
 

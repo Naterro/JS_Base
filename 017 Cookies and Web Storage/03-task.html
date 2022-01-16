@@ -46,6 +46,7 @@
         <div class="form-group">
             <input type="submit" value="Чтение">
         </div>
+        <input type="submit" id="clear" value="Очистить">
     </form>
 
     <script>
@@ -76,6 +77,10 @@
             let value = localStorage.getItem(key); 
             alert(value);
         });
+        document.querySelector("#clear").addEventListener("click",(e)=>{
+            e.preventDefault();
+            localStorage.clear()
+        })
     </script>
 </body>
 

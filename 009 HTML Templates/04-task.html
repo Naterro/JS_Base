@@ -23,9 +23,16 @@
 </head>
 
 <body>
+<template id="template">
+    <tr>
+        <td>{{month}}</td>
+        <td>{{amount}}</td>
+    </tr>
+</template>
     <table>
 
     </table>
+    <script src="mustache.min.js"></script>
 
     <script>
         /*
@@ -65,7 +72,12 @@
                 amount: 100
             }
         ];
-        
+        let template = document.querySelector("#template").innerHTML;
+        let table = document.querySelector("table");
+
+        source.forEach(item => {
+            table.innerHTML += Mustache.render(template, item);
+        });
     </script>
 </body>
 

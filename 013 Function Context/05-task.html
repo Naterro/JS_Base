@@ -31,6 +31,49 @@
         Пользователь: 56
         Сценарий: Правильно! Загаданное значение 56. Вы угадали с 4й попытки за 10 сек.
         */
+
+        class Game{
+            static record_user;
+            static record_score = Number.MAX_VALUE;
+            constructor() {
+                this.randomValue = Math.floor(Math.random() * 101);
+                this.tries = 0;
+            }
+            start(){
+                console.log(this.randomValue);
+
+                let input = prompt("Угадай число",0);
+                if (input==this.randomValue){
+                    this.tries++;
+                    if (this.tries<Game.record_score){
+                        alert("Попыток -"+this.tries);
+                        Game.record_score = this.tries;
+                        Game.record_user=prompt("Введи свое имя чемпион","User");
+                        return;
+                    }
+                    else {
+                        alert("Попыток -"+this.tries);
+                        return;
+                    }
+                }
+                else {
+                    this.tries++;
+                    if (input>this.randomValue){
+                        alert("Больше")
+                    }
+                    else {
+                        alert("Меньше")
+                    }
+                }
+                this.start();
+            }
+        }
+        let game_1 = new Game();
+        let game_2 = new Game();
+        let game_3 = new Game();
+        game_1.start();
+        game_2.start();
+        game_3.start();
     </script>
 </body>
 
